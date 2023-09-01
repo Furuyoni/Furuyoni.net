@@ -2,12 +2,12 @@ namespace Furuyoni.Core.Enums;
 
 public enum AreaType
 {
-    SelfLife,
-    SelfArmor,
-    SelfQi,
-    Void,
+    IssuerLife,
+    IssuerAura,
+    IssuerFlare,
+    Shadow,
     Distance,
     OpponentLife,
-    OpponentArmor,
-    OpponentQi
+    OpponentAura,
+    OpponentFlare
 }

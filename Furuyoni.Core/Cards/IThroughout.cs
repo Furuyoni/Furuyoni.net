@@ -1,5 +1,5 @@
 namespace Furuyoni.Core.Cards;
 
-public interface IFully
+public interface IThroughout
 {
 }

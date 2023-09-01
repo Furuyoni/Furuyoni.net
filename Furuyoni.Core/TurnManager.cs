@@ -1,6 +1,4 @@
-using Furuyoni.Core.Cards;
 using Furuyoni.Core.Crystals;
-using Furuyoni.Core.Enums;
 using Furuyoni.Core.Exceptions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -33,7 +31,7 @@ public class TurnManager
 
     private async Task PreparePhaseAsync()
     {
-        var force = _serviceProvider.GetRequiredKeyedService<ForceManager>(CurrentPlayer);
+        var force = _serviceProvider.GetRequiredKeyedService<VigorManager>(CurrentPlayer);
         force.Add();
 
         var moving = _serviceProvider.GetRequiredService<MovingProvider>();
@@ -47,7 +45,7 @@ public class TurnManager
     private async Task MainPhaseAsync()
     {
         var already = false;
-        var action  = _serviceProvider.GetRequiredKeyedService<IUserAction>(CurrentPlayer);
+        var action  = _serviceProvider.GetRequiredKeyedService<IUserReaction>(CurrentPlayer);
         var cards   = _serviceProvider.GetRequiredKeyedService<CardManager>(CurrentPlayer);
         var moving  = _serviceProvider.GetRequiredService<MovingProvider>();
         // var distance    = _serviceProvider.GetRequiredService<DistanceHandler>();
@@ -61,7 +59,7 @@ public class TurnManager
         // });
         while (true)
         {
-            var operation = await action.TackActionAsync(cards.Hand);
+            var operation = await action.TackActionAsync();
             if (operation == null) { break; }
 
             if (operation is IFully)
@@ -75,7 +73,7 @@ public class TurnManager
                 already = true;
             }
 
-            await operation.ExecuteAsync(moving, new StatusHub(CurrentPlayer, _serviceProvider), !already);
+            await operation.SettleAsync(moving, new StatusHub(CurrentPlayer, _serviceProvider), !already);
         }
     }
 

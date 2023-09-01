@@ -13,7 +13,15 @@ public class LifeHandler
         {
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(value);
 
+            var origin    = _value <= 3;
+            var newStatus = _value <= 3;
             _value = value;
+
+            if (origin != newStatus) { OnResolveStateChange?.Invoke(newStatus); }
         }
     }
+
+    public bool Resolve => _value <= 3;
+
+    public event Action<bool>? OnResolveStateChange;
 }

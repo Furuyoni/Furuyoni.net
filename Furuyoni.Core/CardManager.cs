@@ -1,22 +1,21 @@
 using Furuyoni.Core.Cards;
-using Furuyoni.Core.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Furuyoni.Core;
 
-public class SecretCardManager
-{
-    private readonly CardManager _base;
-
-    public SecretCardManager(CardManager @base) { _base = @base; }
-
-    public int        DeckRemain => _base.DeckRemain;
-    public List<Card> Hand       => _base.Hand;
-    public List<Card> Discard    => _base.Discard;
-    public int        Covered    => _base.Covered.Count;
-    public int        HandLimit  => _base.HandLimit;
-}
+// public class SecretCardManager
+// {
+//     private readonly CardManager _base;
+//
+//     public SecretCardManager(CardManager @base) { _base = @base; }
+//
+//     public int        DeckRemain => _base.DeckRemain;
+//     public List<Card> Hand       => _base.Hand;
+//     public List<Card> Discard    => _base.Discard;
+//     public int        Covered    => _base.Covered.Count;
+//     public int        HandLimit  => _base.HandLimit;
+// }
 
 public class CardManager
 {
@@ -26,13 +25,13 @@ public class CardManager
 
     private readonly ILogger<CardManager> _logger;
     private readonly PlayerType           _playerType;
-    private readonly IUserAction          _userAction;
+    private readonly IUserReaction        _userReaction;
 
     public CardManager(ILogger<CardManager> logger, [ServiceKey] PlayerType playerType, IServiceProvider provider)
     {
-        _logger     = logger;
-        _playerType = playerType;
-        _userAction = provider.GetRequiredKeyedService<IUserAction>(playerType);
+        _logger       = logger;
+        _playerType   = playerType;
+        _userReaction = provider.GetRequiredKeyedService<IUserReaction>(playerType);
     }
 
     public int DeckRemain => _deck.Count;
@@ -45,11 +44,11 @@ public class CardManager
 
     public int HandLimit { get; internal set; } = DefaultHandLimit;
 
-    public SecretCardManager AsSecret() { return new SecretCardManager(this); }
+    // public SecretCardManager AsSecret() { return new SecretCardManager(this); }
 
     public async Task Rebuild()
     {
-        var wantRebuild = await _userAction.RebuildDeckAsync();
+        var wantRebuild = await _userReaction.RebuildDeckAsync();
         if (!wantRebuild) { return; }
 
         _deck.AddRange(Discard);
@@ -79,7 +78,7 @@ public class CardManager
     {
         if (Hand.Count <= HandLimit) { return; }
 
-        var discard = await _userAction.DiscardOverloadAsync(Hand);
+        var discard = await _userReaction.DiscardOverloadAsync(Hand);
         foreach (var card in discard)
         {
             Hand.Remove(card);

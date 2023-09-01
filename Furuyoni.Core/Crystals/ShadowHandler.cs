@@ -1,6 +1,6 @@
 namespace Furuyoni.Core.Crystals;
 
-public class VoidHandler
+public class ShadowHandler
 {
     private int _value;
 

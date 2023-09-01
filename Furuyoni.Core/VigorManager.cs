@@ -1,8 +1,8 @@
 namespace Furuyoni.Core;
 
-public class ForceManager
+public class VigorManager
 {
-    public const int MaxForce = 2;
+    public const int MaxVigor = 2;
 
     // private readonly ILogger<ForceManager> _logger;
     // private readonly PlayerType            _player;
@@ -17,11 +17,13 @@ public class ForceManager
 
     public int Value { get; private set; }
 
-    public bool Cringe { get; internal set; }
+    public bool Flinch { get; internal set; }
 
     public void Add()
     {
-        if (Cringe) { Cringe = false; }
-        else { Value         = Math.Min(MaxForce, Value + 1); }
+        if (Flinch) { Flinch = false; }
+        else { Value         = Math.Min(MaxVigor, Value + 1); }
     }
+
+    public void Minus() { Value = Math.Max(0, Value - 1); }
 }

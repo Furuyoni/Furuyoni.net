@@ -12,9 +12,9 @@ public class DistanceHandler
 
     public int Empty => MaxDistance - _crystal - _temporaryCrystal;
 
-    public int FittingRange { get; internal set; } = 2;
+    public int MasteryZone { get; internal set; } = 2;
 
-    public bool InFittingRange => Value <= FittingRange;
+    public bool InMasteryZone => Value <= MasteryZone;
 
 
     public int ValueOnStart { get; internal set; } = MaxDistance;

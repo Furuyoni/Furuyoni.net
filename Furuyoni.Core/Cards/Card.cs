@@ -1,13 +1,12 @@
-using Furuyoni.Core.Crystals;
+using Furuyoni.Core.Events;
 
 namespace Furuyoni.Core.Cards;
 
-public abstract class Card : IOperation
+public abstract class Card : Operation
 {
-    public Task ExecuteAsync(MovingProvider moving, StatusHub statusHub, bool canFully)
-    {
-        throw new NotImplementedException();
-    }
+    public abstract string Name { get; }
 
-    public bool Usable(StatusHub status) { throw new NotImplementedException(); }
+    protected internal override (Event Event, ICollection<Buff> Buff) Use() { return Effects(); }
+
+    protected abstract (CardEvent Event, ICollection<Buff> Buff) Effects();
 }

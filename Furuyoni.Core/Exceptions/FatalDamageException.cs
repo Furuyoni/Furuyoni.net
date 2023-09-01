@@ -1,5 +1,3 @@
-using Furuyoni.Core.Enums;
-
 namespace Furuyoni.Core.Exceptions;
 
 public class FatalDamageException : Exception

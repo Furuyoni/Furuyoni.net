@@ -1,3 +1,4 @@
-namespace Furuyoni.Core.Enums;
+// namespace Furuyoni.Core.Enums;
+//
+// public enum PlayerType { PlayerA, PlayerB }
 
-public enum PlayerType { PlayerA, PlayerB }

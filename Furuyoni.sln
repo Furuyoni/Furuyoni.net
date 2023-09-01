@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furuyoni.Core", "Furuyoni.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furuyoni.Server", "Furuyoni.Server\Furuyoni.Server.csproj", "{2330FD7F-66AC-4EE0-8556-6FAAF62E4D66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Furuyoni.Cards", "Furuyoni.Cards\Furuyoni.Cards.csproj", "{D08586C5-B10A-4BCB-943E-B87FA370F139}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{2330FD7F-66AC-4EE0-8556-6FAAF62E4D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2330FD7F-66AC-4EE0-8556-6FAAF62E4D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2330FD7F-66AC-4EE0-8556-6FAAF62E4D66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D08586C5-B10A-4BCB-943E-B87FA370F139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D08586C5-B10A-4BCB-943E-B87FA370F139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D08586C5-B10A-4BCB-943E-B87FA370F139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D08586C5-B10A-4BCB-943E-B87FA370F139}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
