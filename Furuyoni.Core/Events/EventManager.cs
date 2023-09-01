@@ -42,6 +42,8 @@ public class EventManager
             newEvent.Turn  = _turn;
 
             _paddingStack.Add(newEvent);
+
+            if (newEvent is CardEvent) { _eventHistory.Add(newEvent); }
         }
     }
 
