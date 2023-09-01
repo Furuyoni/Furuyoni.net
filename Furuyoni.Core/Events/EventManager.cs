@@ -28,8 +28,10 @@ public class EventManager
         var obj = _paddingStack.Last();
         ArgumentNullException.ThrowIfNull(obj.Operation);
 
-        var baseEvents = _paddingStack.AsReadOnly();
-        foreach (var buff in _buffs) { buff.Compute(baseEvents); }
+        var events = _paddingStack.AsReadOnly();
+        foreach (var @event in events) { @event.ResetBuff(); }
+
+        foreach (var buff in _buffs) { buff.Compute(events); }
 
         if (!await obj.Operation.MoveNextAsync()) { _paddingStack.Remove(obj); }
         else

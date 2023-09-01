@@ -15,6 +15,9 @@ public abstract class Event : IComparable<Event>, IAsyncDisposable
 
     public async ValueTask DisposeAsync() { await Operation.DisposeAsync(); }
 
+
+    internal virtual void ResetBuff() { }
+
     // public MoveExecutor                MoveAsync                { get; }
     // public MoveFromEnhancementExecutor MoveFromEnhancementAsync { get; }
     // public MoveToEnhancementExecutor   MoveToEnhancementAsync   { get; }
